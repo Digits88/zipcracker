@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 import zipfile
 from threading import Thread
 from optparse import OptionParser
@@ -11,13 +13,9 @@ def crackfile(zipfile,password):
     except:
         return
 def main():
-    parser= OptionParser("Specify -f <zipname> -d <wordlist> or --help for help")
-    parser.add_option("-f","--file",dest="zipname",help="specify the zipfile name 
-
-with proper path")
-    parser.add_option("-w","--wordlist",dest="wordlist",help="specify the wordlist 
-
-with proper path")
+    parser= OptionParser("Specify -f <zip-file> -w <wordlist> or use --help to print this help message")
+    parser.add_option("-f","--file",dest="zipname",help="specify the zipfile to use.")
+    parser.add_option("-w","--wordlist",dest="wordlist",help="specify the wordlist to use.")
     (options, args)= parser.parse_args ()
     if (options.zipname== None) | (options.wordlist== None):
         print parser.usage
@@ -35,7 +33,7 @@ with proper path")
             else:
                 pass
         else:
-            print "not found"
+            print "Password not found, try another wordlist :)"
             pfile.close()
 if __name__=='__main__':
     main()
